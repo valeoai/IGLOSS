@@ -52,7 +52,7 @@ If you find LOSC useful for your research, please cite our paper as follows.
 
 BibTeX entry:
 ```
-@inproceedings{losc,
+@inproceedings{igloss,
   author = {Nermin Samet and Gilles Puy and Renaud Marlet},
   title = {IGLOSS: Image Generation for Lidar Open-vocabulary Semantic Segmentation},
   booktitle = {arXiv},
