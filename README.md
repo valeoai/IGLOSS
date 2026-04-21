@@ -54,7 +54,7 @@ BibTeX entry:
 ```
 @inproceedings{losc,
   author = {Nermin Samet and Gilles Puy and Renaud Marlet},
-  title = {LOSC: LiDAR Open-voc Segmentation Consolidator},
+  title = {IGLOSS: Image Generation for Lidar Open-vocabulary Semantic Segmentation},
   booktitle = {arXiv},
   year = {2026},
 }
