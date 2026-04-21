@@ -67,9 +67,7 @@ Also, please install any other required packages as needed via pip during the se
 
 ## Zero-shot Semantic Segmentation of Lidar Scenes with IGLOSS
  
-
-Ensure you have the **ScaLR+ pretrained backbone weights** placed under the `checkpoints/` folder.
-
+Ensure the **ScaLR+ pretrained backbone weights** are [downloaded](https://github.com/valeoai/IGLOSS/releases/download/v0.1.0/WI_768_droppath_gelu-dinov2_vitl-448x896-mlp_2048-65_epoch-checkpointing.tar), unpacked, and placed under the `checkpoints/` folder.
 
 Set your project directory path:
 
