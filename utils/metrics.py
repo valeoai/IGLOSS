@@ -1,0 +1,54 @@
+import numpy as np
+import torch
+from torch.nn import CrossEntropyLoss, Module
+from torch.nn.functional import softmax
+
+from .lovasz import lovasz_softmax_flat
+
+
+def fast_hist(pred, label, n):
+    assert torch.all(label > -1) & torch.all(pred > -1)
+    assert torch.all(label < n) & torch.all(pred < n)
+    return torch.bincount(n * label + pred, minlength=n**2).reshape(n, n)
+
+
+def per_class_iu(hist):
+    with np.errstate(divide="ignore", invalid="ignore"):
+        return np.diag(hist) / (hist.sum(1) + hist.sum(0) - np.diag(hist))
+
+
+def overall_accuracy(hist):
+    with np.errstate(divide="ignore", invalid="ignore"):
+        return np.diag(hist).sum() / hist.sum()
+
+
+def per_class_accuracy(hist):
+    with np.errstate(divide="ignore", invalid="ignore"):
+        return np.diag(hist) / hist.sum(1)
+
+
+class SemSegLoss(Module):
+    def __init__(self, nb_class, lovasz_weight=1.0, ignore_index=255):
+        super().__init__()
+        self.nb_class = nb_class
+        self.ignore_index = ignore_index
+        self.lovasz_weight = lovasz_weight
+        self.ce = CrossEntropyLoss(ignore_index=ignore_index)
+        self.lovasz_fn = lovasz_softmax_flat
+
+    def __call__(self, pred, true):
+
+        where = true != self.ignore_index
+        pred, true = pred[where], true[where]
+
+        assert pred.ndim == 2
+        true = true.long()
+        loss = self.ce(pred, true)
+
+        if self.lovasz_weight > 0:
+            loss += self.lovasz_weight * self.lovasz_fn(
+                softmax(pred, dim=1),
+                true,
+            )
+
+        return loss
