@@ -44,7 +44,7 @@ Some highlights:
 
 ## Citation
 
-If you find LOSC useful for your research, please cite our paper as follows.
+If you find IGLOSS useful for your research, please cite our paper as follows.
 
 > N. Samet, G. Puy, R. Marlet, "IGLOSS: Image Generation for Lidar Open-vocabulary Semantic Segmentation",
 > arXiv, 2026.
