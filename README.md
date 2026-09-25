@@ -18,10 +18,12 @@
   <a href="https://arxiv.org/abs/2604.01361">📃 Paper</a> &ensp;
 </p>
 
+<h1 align="center">NeurIPS 2026</h1>
 
 <p align="center">
   <img src="igloss.png" width="600">
 </p>
+
 
 ## ✨ What's IGLOSS?
 
